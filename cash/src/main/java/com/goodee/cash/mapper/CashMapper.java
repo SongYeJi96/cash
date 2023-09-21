@@ -10,10 +10,10 @@ import com.goodee.cash.vo.Cashbook;
 public interface CashMapper {
 	
 	// 월별 입출금 내역 조회
-	List<Cashbook> selectCashbookListByMonth(Map<String, Object> cListByMonthMap);
+	List<Cashbook> selectCashbookListByMonth(Map<String, Object> paramMap);
 	
 	// 일별 입출금 내역 조회
-	List<Cashbook> selectCashbookListByDate(Map<String, Object> cLisByDatetMap);
+	List<Cashbook> selectCashbookListByDate(Map<String, Object> cashMap);
 	
 	// 입출금 상세내역 조회
 	Cashbook selectCashbookOne(int cashbookNo);
@@ -25,7 +25,14 @@ public interface CashMapper {
 	int modifyCashbook(Cashbook cashbook);
 	
 	// 입출금 내역 삭제
-	int removeCashbook(Cashbook cashbook);
-
+	int removeCashbook(int cashbookNo);
 	
+	// 해당월 수입, 지출 합계, 잔액 조회
+	Map<String, Object> totalIncomeAndExpense(Map<String, Object> paramMap);
+	
+	// 최초 가계부 작성 년도 조회
+	String getCashCreatedate(String memberId);
+	
+	// 월 별 수입/지출 통계 조회
+	List<Map<String, Object>> getIncomeAndExpenseData(Map<String, Object> paramMap);
 }

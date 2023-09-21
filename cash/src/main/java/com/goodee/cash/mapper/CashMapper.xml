@@ -53,6 +53,21 @@
 		WHERE cashbook_no = #{cashbookNo}			
 	</select>
 	
+	<!-- 해당월 수입, 지출 합계, 잔액 조회 -->
+	<select id="totalIncomeAndExpense"
+			parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			COALESCE(SUM(CASE WHEN category = '수입' THEN price ELSE 0 END),0) totalIncome,
+			COALESCE(SUM(CASE WHEN category = '지출' THEN price ELSE 0 END),0) totalExpense,
+			COALESCE(SUM(CASE WHEN category = '수입' THEN price ELSE 0 END) 
+			- SUM(CASE WHEN category = '지출' THEN price ELSE 0 END),0) balance
+		FROM cashbook
+		WHERE 
+			YEAR(cashbook_date) = #{targetYear} 
+			AND MONTH(cashbook_date) = #{targetMonth} 
+			AND member_id = #{memberId}
+	</select>
+	
 	<!-- 입출금 내역 등록 -->
 	<insert id="addCashbook" 
 			parameterType="com.goodee.cash.vo.Cashbook">
@@ -88,12 +103,36 @@
 			price = #{price},
 			memo = #{memo},
 			updatedate = NOW()
-		WHERE member_id = #{memberId}
-		AND cashbook_no = #{cashbookNo}	
+		WHERE cashbook_no = #{cashbookNo}	
 	</update>
 	
 	<!-- 입출금 내역 삭제 -->
 	<delete id="removeCashbook" parameterType="int">
 		DELETE FROM cashbook WHERE cashbook_no = #{cashbookNo}
 	</delete>
+	
+	<!-- 최초 가계부 작성 년도 조회 -->
+	<select id="getCashCreatedate">
+		SELECT 
+			MIN(createdate) firstCreatedate 
+		FROM cashbook 
+		WHERE 
+			member_id = #{memberId}
+	</select>
+	
+	<!-- 월 별 수입/지출 통계 조회 -->
+	<select id="getIncomeAndExpenseData"
+			parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    YEAR(createdate) year,
+		    MONTH(createdate) MONTH,
+		    COALESCE(SUM(case when category = '수입' then price ELSE 0 END),0) totalIncome,
+		    COALESCE(SUM(case when category = '지출' then price ELSE 0 END),0) totalExpense
+		FROM
+		    cashbook
+		WHERE
+		    YEAR(createdate) = #{year} AND member_id = #{memberId}
+		GROUP BY
+		    YEAR(createdate), MONTH(createdate)
+	</select>
 </mapper>

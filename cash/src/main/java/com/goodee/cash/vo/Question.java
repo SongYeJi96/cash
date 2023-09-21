@@ -6,9 +6,9 @@ import lombok.Data;
 public class Question {
 	
 	private int questionNo;
+	private String memberId;
 	private String questionTitle;
 	private String questionContent;
-	private String questionWriter;
 	private String createdate;
 	private String updatedate;
 }

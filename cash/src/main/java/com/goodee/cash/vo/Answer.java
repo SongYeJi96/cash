@@ -6,8 +6,9 @@ import lombok.Data;
 public class Answer {
 	
 	private int answerNo;
+	private int questionNo;
+	private String memberId;
 	private String answerContent;
-	private String answerWriter;
 	private String createdate;
 	private String updatedate;
 

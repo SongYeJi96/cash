@@ -10,6 +10,7 @@ public class Member {
 	private String memberName;
 	private String memberEmail;
 	private int idLevel;
+	private String active;
 	private String createdate;
 	private String updatedate;
 }
