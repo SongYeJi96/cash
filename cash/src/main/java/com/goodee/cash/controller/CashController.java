@@ -108,7 +108,7 @@ public class CashController {
 		// 값 저장(cashbookDate)
 		String cashbookDate = cashbook.getCashbookDate();
 		
-		return "redirect:/cash/cashbookListByDate?cashbookDate=" + cashbookDate + "&msg=" + msg;
+		return "redirect:/cashbook/cashbookListByDate?cashbookDate=" + cashbookDate + "&msg=" + msg;
 	}
 	
 	// 가계부 수정
@@ -134,7 +134,7 @@ public class CashController {
 		// msg 인코딩
 		msg = URLEncoder.encode(msg, "UTF-8");
 		
-		return "redirect:/cash/cashbookOne?cashbookNo=" + cashbookNo +"&msg=" + msg;
+		return "redirect:/cashbook/cashbookOne?cashbookNo=" + cashbookNo +"&msg=" + msg;
 	}
 	
 	// 가계부 삭제
@@ -157,6 +157,6 @@ public class CashController {
 		// msg 인코딩
 		msg = URLEncoder.encode(msg, "UTF-8");
 		
-		return "redirect:/cash/cashbookListByDate?cashbookDate=" + cashbookDate +"&msg=" + msg;
+		return "redirect:/cashbook/cashbookListByDate?cashbookDate=" + cashbookDate +"&msg=" + msg;
 	}
 }
