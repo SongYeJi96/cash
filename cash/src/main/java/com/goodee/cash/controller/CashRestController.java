@@ -39,16 +39,16 @@ public class CashRestController {
 	}
 	
 	// 최초 가계부 작성 년도 조회
-	@GetMapping("/cashbook/getCashCreatedate")
-	public String getCashCreatedate(HttpSession session) {
+	@GetMapping("/cashbook/getCashbookDate")
+	public String getCashbookDate(HttpSession session) {
 		
 		// 세션에서 로그인 된 memberId 추출
 		String memberId = (String) session.getAttribute("loginId");
 		
-		String getCashCreatedate = cashService.getCashCreatedate(memberId);
-		log.debug(getCashCreatedate+"<-- CashRestController.getCashCreatedate() getCashCreatedate");
+		String getCashbookDate = cashService.getCashbookDate(memberId);
+		log.debug(getCashbookDate+"<-- CashRestController.getCashbookDate() getCashbookDate");
 		
-		return getCashCreatedate;
+		return getCashbookDate;
 	}
 	
 	// 월 별 수입/지출 통계 조회

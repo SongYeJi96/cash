@@ -19,7 +19,7 @@
                         <h4>로그인</h4>
                         <div class="pt-3">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" id="memberId"
+                                <input type="text" class="form-control form-control-lg" id="memberId" value="admin"
                                     placeholder="아이디"
                                     
                                     <c:if test="${not empty loginId}">
@@ -28,7 +28,7 @@
                                  >
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control form-control-lg" id="memberPw"
+                                <input type="password" class="form-control form-control-lg" id="memberPw" value="1234"
                                     placeholder="비밀번호">
                             </div>
                             <div class="mt-3">

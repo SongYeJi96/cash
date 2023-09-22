@@ -344,12 +344,12 @@ public class CashService implements ICashService{
 	}
 
 	// 최초 가계부 작성 년도 조회
-	public String getCashCreatedate(String memberId) {
+	public String getCashbookDate(String memberId) {
 		
-		String getCashCreatedate = cashMapper.getCashCreatedate(memberId);
-		log.debug("CashService.getCashCreatedate() getCashCreatedate:" + getCashCreatedate);
+		String getCashbookDate = cashMapper.getCashbookDate(memberId);
+		log.debug("CashService.getCashCreatedate() getCashbookDate:" + getCashbookDate);
 		
-		return getCashCreatedate;
+		return getCashbookDate;
 	}
 
 	// 월 별 수입/지출 통계 조회

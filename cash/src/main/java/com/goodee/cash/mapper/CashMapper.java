@@ -31,7 +31,7 @@ public interface CashMapper {
 	Map<String, Object> totalIncomeAndExpense(Map<String, Object> paramMap);
 	
 	// 최초 가계부 작성 년도 조회
-	String getCashCreatedate(String memberId);
+	String getCashbookDate(String memberId);
 	
 	// 월 별 수입/지출 통계 조회
 	List<Map<String, Object>> getIncomeAndExpenseData(Map<String, Object> paramMap);

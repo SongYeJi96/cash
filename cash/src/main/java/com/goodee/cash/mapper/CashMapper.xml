@@ -112,9 +112,9 @@
 	</delete>
 	
 	<!-- 최초 가계부 작성 년도 조회 -->
-	<select id="getCashCreatedate">
+	<select id="getCashbookDate">
 		SELECT 
-			MIN(createdate) firstCreatedate 
+			MIN(cashbook_date) firstCashbookDate 
 		FROM cashbook 
 		WHERE 
 			member_id = #{memberId}
@@ -124,15 +124,15 @@
 	<select id="getIncomeAndExpenseData"
 			parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
-		    YEAR(createdate) year,
-		    MONTH(createdate) MONTH,
+		    YEAR(cashbook_date) year,
+		    MONTH(cashbook_date) MONTH,
 		    COALESCE(SUM(case when category = '수입' then price ELSE 0 END),0) totalIncome,
 		    COALESCE(SUM(case when category = '지출' then price ELSE 0 END),0) totalExpense
 		FROM
 		    cashbook
 		WHERE
-		    YEAR(createdate) = #{year} AND member_id = #{memberId}
+		    YEAR(cashbook_date) = #{year} AND member_id = #{memberId}
 		GROUP BY
-		    YEAR(createdate), MONTH(createdate)
+		    YEAR(cashbook_date), MONTH(cashbook_date)
 	</select>
 </mapper>
